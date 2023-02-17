@@ -1,0 +1,53 @@
+import math
+
+
+# Se separa la frase en mayúsculas, números y demás caracteres
+# Para operación=1, operacion 2 divide el string a la mitad.
+def divide_string(frase, operacion):
+
+    letras1 = ""
+    letras2 = ""
+    if isinstance(frase, str):
+        if isinstance(operacion, int):
+            # Comprueba operacion, operacion!=1|2, código de error E11.
+            if (operacion == 1):
+                # Mayúsculas o números en letras1, demás en letras2.
+                for x in frase:
+                    if x.isupper() | x.isdigit():
+                        letras1 += x
+                    else:
+                        letras2 += x
+            elif (operacion == 2):
+                # Se recorre toda la frase
+                for x in range(0, len(frase)):
+                    # len(frase)=par, recorre la mitad, divide en letras1 y 2.
+                    if len(frase) % 2 == 0:
+                        if (x < len(frase)/2):
+                            letras1 += frase[x]
+                        else:
+                            letras2 += frase[x]
+                    else:
+                        # caso impar letras1 tendrá cantidad mayor de chars.
+                        if (x < 1 + len(frase)//2):
+                            letras1 += frase[x]
+                        else:
+                            letras2 += frase[x]
+            else:
+                return ("E11")
+        else:
+            # Parámetro diferente a un número da el código de error E12
+            return ("E12")
+    else:
+        # Parámetro diferente a un string da el código de error E13
+        return ("E13")
+    return (letras1, letras2)
+
+
+def measure_area(numero):
+
+    # Comprueba si parámetro es tipo int, caso contrario se retorna error E14
+    if isinstance(numero, int):
+        # Retorna área de cuadrado y círculo con parámetro como lado y radio
+        return (numero * numero, math.pi * pow(numero, 2))
+    else:
+        return ("E14")
